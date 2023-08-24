@@ -6,21 +6,25 @@ Fast Image Encoder is a C#/Rust image encoding library. It is meant as a signifi
 
 ## How to add this to your program
 
-1. Compile the Rust crate and copy the dll:  `cargo build --release; cp target/release/fast_image_encoder.dll cs/FastImageEncoder/FastImageEncoder`
+1. Compile the Rust crate and copy the dll:  `cargo build --release; cp target/release/fast_image_encoder.dll ../../cs/FastImageEncoder/FastImageEncoder`
 2. Compile the C# dll in `cs/FastImageEncoder/FastImageEncoder` with the Release flag.
 
 1. Add `FastImageEncoder.dll` and `fast_image_encoder.dll` to your project in the same directory. They are both in: `cs/FastImageEncoder/FastImageEncoder/bin/Release`
 
 ## Examples
 
-### 1. Rust-to-Rust
+### 1. Rust-to-Rust: `rs/fast_image_encoder/examples/benchmark`
 
-This is an example of encoding an image within a Rust program. It isn't the intended use-case for this project but it's probably useful for understanding how the Rust code works. It can also be used to benchmark the image encoding without and FFI overhead.
+This program loads raw RGB data in `target/release/examples/images/` and outputs png files in `target/release/examples/images/out`. This is an example of encoding an image within a Rust program. It isn't the intended use-case for this project but it's probably useful for understanding how the Rust code works. It can also be used to benchmark the image encoding without and FFI overhead.
 
 To compile and run:
 
 1. `cd rs/fast_image_encoder`
 2. `cargo build --release --example benchmark; cp -r images/* target/release/examples/images; cargo run --release --example benchmark`
+
+### 2. Rust-to-C#: `cs/FastImageEncode/Benchmark`
+
+This is a minimal example of how to code images in C# using a dll build from `rs/fast_image/encoder`. It uses the same raw RGB data as the previous example. It also includes an example of multi-threaded image encoding.
 
 ## The problem that this solves
 

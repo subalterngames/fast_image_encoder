@@ -87,7 +87,7 @@ pub fn generate_headers() -> ::std::io::Result<()> {
     } else {
         builder
             .to_file(&format!(
-                "../cs/FastImageEncoder/FastImageEncoder/NativeBindings.cs"
+                "../../cs/FastImageEncoder/FastImageEncoder/NativeBindings.cs"
             ))?
             .generate()?
     }
