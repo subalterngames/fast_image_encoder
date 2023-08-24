@@ -20,3 +20,11 @@ cs/FastImageEncoder/FastImageEncoder/obj/
 cs/FastImageEncoder/FastImageEncoder/image_encoder.dll
 cs/FastImageEncoder/Benchmark/bin/
 cs/FastImageEncoder/Benchmark/obj/
+cs/FastImageEncoder/UnityExample/.idea/
+cs/FastImageEncoder/UnityExample/Library/
+cs/FastImageEncoder/UnityExample/Logs/
+cs/FastImageEncoder/UnityExample/obj/
+cs/FastImageEncoder/UnityExample/Temp/
+cs/FastImageEncoder/UnityExample/UserSettings/
+cs/FastImageEncoder/UnityExample/Assets/FastImageEncoder/*
+cs/FastImageEncoder/UnityExample/Images/
