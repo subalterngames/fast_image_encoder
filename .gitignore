@@ -1,0 +1,22 @@
+/rs/fast_image_encoder/target
+/rs/fast_image_encoder/images/out
+/Cargo.lock
+cs/ImageEncoder/.idea
+# Default ignored files
+cs/ImageEncoder/shelf/
+cs/ImageEncoder/workspace.xml
+# Rider ignored files
+cs/ImageEncoder/projectSettingsUpdater.xml
+cs/ImageEncoder/.idea.ImageEncoder.iml
+cs/ImageEncoder/contentModel.xml
+cs/ImageEncoder/modules.xml
+# Editor-based HTTP Client requests
+cs/ImageEncoder/httpRequests/
+# Datasource local storage ignored files
+cs/ImageEncoder/dataSources/
+cs/ImageEncoder/dataSources.local.xml
+cs/ImageEncoder/ImageEncoder/bin/
+cs/ImageEncoder/ImageEncoder/obj/
+cs/ImageEncoder/ImageEncoder/image_encoder.dll
+cs/ImageEncoder/EncoderTest/bin/
+cs/ImageEncoder/EncoderTest/obj/

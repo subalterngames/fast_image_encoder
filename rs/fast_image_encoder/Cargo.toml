@@ -1,0 +1,16 @@
+[package]
+name = "fast_image_encoder"
+version = "0.1.0"
+edition = "2021"
+authors = ["Esther Alter <subalterngames@gmail.com>"]
+description = "Zero-allocation FFI call to encode raw RGB arrays to png or jpg."
+
+[lib]
+crate-type = ["lib", "cdylib"]
+
+[features]
+headers = ["safer-ffi/headers"]
+
+[dependencies]
+image = { version = "0.24.7", default-features = false, features = ["jpeg", "png"] }
+safer-ffi = { version = "0.1.2", features = ["alloc"] }
