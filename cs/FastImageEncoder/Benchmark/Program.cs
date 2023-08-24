@@ -2,13 +2,12 @@
 using FastImageEncoder;
 
 
-namespace EncoderTest;
+namespace Benchmark;
 
 public class Program
 {
     private const int NUM_IMAGES = 6;
     private static ImageBuffers[] threadedBuffers = new ImageBuffers[NUM_IMAGES];
-    private static UInt32[] lengths = new UInt32[NUM_IMAGES];
     
     
     private static void Main(string[] args)
@@ -23,6 +22,7 @@ public class Program
         
         Console.WriteLine("Sequential encoding:");
         Stopwatch stopWatch = new Stopwatch();
+        double t = 0;
         for (int i = 0; i < NUM_IMAGES; i++)
         {
             string rawImagePath = Path.Combine(imagesDirectory, "img_000" + i + ".bytes");
@@ -31,12 +31,19 @@ public class Program
             stopWatch.Start();
             uint length = buffers.Encode();
             stopWatch.Stop();
-            Console.WriteLine(stopWatch.Elapsed.TotalSeconds);
+            double dt = stopWatch.Elapsed.TotalSeconds;
+            if (i > 1)
+            {
+                t += dt;
+            }
+            Console.WriteLine(dt);
             stopWatch.Reset();
             byte[] encodedImage = buffers.GetEncodedImage(length);
             string encodedImagePath = Path.Combine(outputDirectory, "img_000" + i + ".png");
             File.WriteAllBytes(encodedImagePath, encodedImage);
         }
+        Console.WriteLine("Average: " + t / (NUM_IMAGES - 1));
+        Console.WriteLine("Total: " + t);
         
         Console.WriteLine("Threaded encoding:");
         for (int i = 0; i < NUM_IMAGES; i++)
@@ -49,7 +56,7 @@ public class Program
         for (int i = 0; i < NUM_IMAGES; i++)
         {
             int index = i;
-            tasks[i] = new Task(() => lengths[index] = threadedBuffers[index].Encode());
+            tasks[i] = new Task(() => threadedBuffers[index].Encode());
             tasks[i].Start();
         }
         stopWatch.Start();

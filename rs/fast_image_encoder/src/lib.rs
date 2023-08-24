@@ -46,17 +46,10 @@ pub fn encode(raw_image: &RawImage, encoded_image: &mut safer_ffi::Vec<u8>) -> u
     {
         panic!("Failed to encode jpg: {}", error)
     }
-    // Get the length of the written buffer and the encoded image.
-    let writer_len = writer.get_ref().len();
-    let encoded_image_len = encoded_image.len();
-    let length = writer_len as u32;
-    if writer_len < encoded_image_len {
-        writer
-            .get_mut()
-            .append(&mut vec![0; encoded_image_len - writer_len]);
-    }
-    encoded_image.copy_from_slice(writer.get_ref());
-    length
+    let w = writer.get_ref();
+    let writer_len = w.len();
+    encoded_image[0..writer_len].copy_from_slice(w);
+    writer_len as u32
 }
 
 /// Converts a u8 value to a color type.

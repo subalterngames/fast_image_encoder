@@ -132,8 +132,8 @@ public class ImageEncoderManager : MonoBehaviour
 
     private IEnumerator RunAll()
     {
-        yield return Run(false, false);
-        yield return Run(true, false);
+        //yield return Run(false, false);
+        //yield return Run(true, false);
         yield return Run(false, true);
         yield return Run(true, true);
         EditorApplication.isPlaying = false;

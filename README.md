@@ -13,7 +13,7 @@ Fast Image Encoder speeds up image encoding in two ways:
 1. It uses an external Rust library to encode png and jpg files.
 2. It encodes to a pre-cached array. Conversely, Unity encodes to a newly-allocated array, thus increasingly GC collect time.
 
-**Depending on the benchmark used, Fast Image Encoder is faster than Unity's image conversion by 25% to 78%.**
+**Depending on the benchmark used, Fast Image Encoder is faster than Unity's image conversion by 75% to 98%.**
 
 ## How to add Fast Image Encoder to your program
 
@@ -35,24 +35,15 @@ To compile and run:
 1. `cd rs/fast_image_encoder`
 2. `cargo build --release --example benchmark; cp -r images/* target/release/examples/images; cargo run --release --example benchmark`
 
-**Average elapsed time per encode: 0.0014 seconds**
+**Average elapsed time per encode:  0.0013 seconds**
 
 ### 2. Rust-to-C#: `cs/FastImageEncoder/Benchmark`
 
 This is a minimal example of how to code images in C# using a library built from `rs/fast_image/encoder`. It uses the same raw RGB data as the previous example. It also includes an example of multi-threaded image encoding.
 
-**Average elapsed time per encode: 0.0014 seconds** 
+**Average elapsed time per encode: 0.0008 seconds**
 
-This is the same as the Rust benchmark, which means that C# doesn't actually introduce any overhead!
-
-If each image is encoded in a concurrent thread, we get an additional speed improvement, though there is still some overhead:
-
-| Method | Time Elapsed (seconds) |
-| --- | --- |
-| Sequential | 0.0071 |
-| Threaded | 0.0041 |
-
-**Speed up due to threading: 42%**
+I can't explain right now why the C# + Rust code is faster than pure-Rust. It may be a small difference in how each languages' respective stopwatch works. In any case, it's safe to conclude that there is barely any overhead when calling Rust code in C#.
 
 ### 3. Rust-to-Unity: `cs/FastImageEncoder/UnityExample`
 
@@ -75,12 +66,12 @@ This benchmark can't be compared directly two previous benchmarks because Unity 
 | -------- | ------------------ | -------------------------------- | --------------------------------- |
 | No       | Unity              | 0.0420                           | 0.0032                            |
 | Yes      | Unity              | 0.0127                           | 0.0053                            |
-| No       | Fast Image Encoder | 0.0154                           | 0.0006                            |
-| Yes      | Fast Image Encoder | 0.0094                           | 0.0008                            |
+| No       | Fast Image Encoder | 0.0147                           | 0.0005                            |
+| Yes      | Fast Image Encoder | 0.0095                           | 0.0007                            |
 
-**Fast Image Encoder is faster than Unity per-render by approximately 78%.** This ratio will narrow as the complexity of the image increases.
+**Fast Image Encoder is faster than Unity per-render by approximately 98%.** This ratio will narrow as the complexity of the image increases.
 
-**Using concurrent threads, Fast Image Encoder is faster than Unity per-frame by approximately 27%.**
+**Using concurrent threads, Fast Image Encoder is faster than Unity per-frame by approximately 77%.**
 
 ## Limitations
 
