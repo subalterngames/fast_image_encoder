@@ -52,8 +52,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\ImageEncoderManager.cs" />
+     <Compile Include="Assets\Scripts\Benchmarker.cs" />
      <Compile Include="Assets\Scripts\ImageEncoder.cs" />
+     <Compile Include="Assets\Scripts\MinimalExample.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.24f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -630,9 +631,6 @@
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>C:/Users/Seth Alter/fast_image_encoder/cs/FastImageEncoder/UnityExample/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
- <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/Seth Alter/fast_image_encoder/cs/FastImageEncoder/UnityExample/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
- </Reference>
  <Reference Include="Unity.VisualStudio.Editor">
  <HintPath>C:/Users/Seth Alter/fast_image_encoder/cs/FastImageEncoder/UnityExample/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
  </Reference>
@@ -641,9 +639,6 @@
  </Reference>
  <Reference Include="Unity.Timeline">
  <HintPath>C:/Users/Seth Alter/fast_image_encoder/cs/FastImageEncoder/UnityExample/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/Seth Alter/fast_image_encoder/cs/FastImageEncoder/UnityExample/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Users/Seth Alter/fast_image_encoder/cs/FastImageEncoder/UnityExample/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>

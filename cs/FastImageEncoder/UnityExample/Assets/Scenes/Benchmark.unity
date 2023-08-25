@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 1901778336}
   - component: {fileID: 1901778335}
   m_Layer: 0
-  m_Name: ImageEncoderManager
+  m_Name: Benchmarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

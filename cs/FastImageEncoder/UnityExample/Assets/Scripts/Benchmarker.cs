@@ -7,7 +7,7 @@ using UnityEngine;
 using Debug = UnityEngine.Debug;
 
 
-public class ImageEncoderManager : MonoBehaviour
+public class Benchmarker : MonoBehaviour
 {
     private const int NUM_ROTATIONS = 360;
     private const int NUM_CAMERAS = 10;
@@ -57,7 +57,7 @@ public class ImageEncoderManager : MonoBehaviour
     private void CreateImageEncoders()
     {
         GameObject prefab = Resources.Load<GameObject>("ImageEncoder");
-        for (int i = 0; i < imageEncoders.Length; i++)
+        for (int i = 0; i < NUM_CAMERAS; i++)
         {
             imageEncoders[i] = Instantiate(prefab).GetComponent<ImageEncoder>();
         }

@@ -2,7 +2,7 @@
 
 **Blazingly fast C#/Rust zero-allocation thread-safe png/jpg image encoder.**
 
-Fast Image Encoder is a C#/Rust image encoding library. It is meant as a significantly faster alternative to Unity's image encoding methods.
+**Fast Image Encoder is faster than Unity's image encoder by 75% to 98%** (depending on the benchmark used).
 
 This library is meant to speed up projects in which images needed to be encoded to png per-frame as fast as possible, e.g. an ML simulation that either generates image datasets or includes agents that rely on image data.
 
@@ -12,8 +12,6 @@ Fast Image Encoder speeds up image encoding in two ways:
 
 1. It uses an external Rust library to encode png and jpg files.
 2. It encodes to a pre-cached array. Conversely, Unity encodes to a newly-allocated array, thus increasingly GC collect time.
-
-**Depending on the benchmark used, Fast Image Encoder is faster than Unity's image conversion by 75% to 98%.**
 
 ## How to add Fast Image Encoder to your program
 
@@ -49,14 +47,18 @@ I can't explain right now why the C# + Rust code is faster than pure-Rust. It ma
 
 Before opening the Unity project for the first time, compile the Rust and C# libraries (see above) and copy them into: `cs/FastImageEncoder/UnityExample/Assets/FastImageEncoder/`.
 
-This Unity example creates 10 cameras and runs 4 image encoding benchmarks:
+#### 3a. Minimal Example
+
+The MinimalExample scene has a script that generates 10 `ImageEncoders` and encodes each captured image in a separate thread. It's not necessary to use the `ImageEncoder` class; it's mostly minimal boilerplate code. For example, `ImageEncoder` immediately writes the png to disk but you might want to manipulate it before saving it. The `ImageBuffers` class that it references *is* part of Fast Image Encoder and you should always use it.
+
+#### 3b. Benchmark
+
+This Unity scene creates 10 cameras and runs 4 image encoding benchmarks:
 
 1. Sequentially with Unity's image converter
 2. In concurrent threads with Unity's image converter
 3. Sequentially with Fast Image Encoder
 4. In concurrent threads with Fast Image Encoder
-
-In Unity Editor, open the SampleScene and press Play.
 
 There are 10 cameras, so there are 10 renders per frame. 
 
