@@ -1,6 +1,6 @@
 # Fast Image Encoder
 
-**Blazingly fast C#/Rust zero-allocation thread-safe png/jpg image encoder.**
+**Blazingly fast C#/Rust thread-safe png/jpg image encoder.**
 
 **Fast Image Encoder is faster than Unity's image encoder by 75% to 98%** (depending on the benchmark used).
 
