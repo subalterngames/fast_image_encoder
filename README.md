@@ -15,10 +15,8 @@ Fast Image Encoder speeds up image encoding in two ways:
 
 ## How to add Fast Image Encoder to your program
 
-1. Compile the Rust crate and copy the library:  `cargo build --release; cp target/release/fast_image_encoder.dll ../../cs/FastImageEncoder/FastImageEncoder`
-2. Compile the C# library in `cs/FastImageEncoder/FastImageEncoder` with the Release flag.
-
-1. Add `FastImageEncoder.dll` and `fast_image_encoder.dll` to your project in the same directory. They are both in: `cs/FastImageEncoder/FastImageEncoder/bin/Release`
+1. [Download the latest release.](https://github.com/subalterngames/fast_image_encoder/releases/latest) You need to download `FastImageEncoder.dll` (compatible with Linux, MacOS, and Windows), *and* `fast_image_encoder.*` (for whatever platform(s) you plan to develop for). MacOS: `.dylib`, Linux: `.so`, Windows: `.dll`
+2. Add the download libraries to your project.
 
 ## Examples and Benchmarks
 
@@ -81,7 +79,12 @@ This benchmark can't be compared directly two previous benchmarks because Unity 
 
 Fast Image Encoder assumes that the input image data is raw RGB data, as opposed to jpg and png.
 
-## Generate headers
+## How to compile
+
+1. Compile the Rust crate and copy the library:  `cargo build --release; cp target/release/fast_image_encoder.dll ../../cs/FastImageEncoder/FastImageEncoder`
+2. Compile the C# library in `cs/FastImageEncoder/FastImageEncoder` with the Release flag.
+
+## How to generate .cs bindings
 
 If the Rust code is edited, the C# bindings need to be re-generated:
 

@@ -16,13 +16,13 @@ jobs:
         include:
           - os: ubuntu-latest
             artifact_name: libfast_image_encoder.so
-            asset_name: fast_image_encoder-linux-x64
+            asset_name: fast_image_encoder.so
           - os: windows-latest
             artifact_name: fast_image_encoder.dll
-            asset_name: fast_image_encoder-windows-x64
+            asset_name: fast_image_encoder.dll
           - os: macos-latest
             artifact_name: libfast_image_encoder.dylib
-            asset_name: fast_image_encoder-macos-x64
+            asset_name: fast_image_encoder.dylib
     steps:
       - uses: actions/checkout@v3
       - name: Install Rust
@@ -32,7 +32,6 @@ jobs:
       - name: cargo build
         working-directory: rs/fast_image_encoder
         run: cargo build --release
-      - run: cd rs/fast_image_encoder/target/release && ls
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
