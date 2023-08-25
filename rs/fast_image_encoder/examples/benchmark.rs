@@ -32,7 +32,7 @@ fn main() {
             buffer: safer_ffi::Vec::from(buffer),
             width: 256,
             height: 256,
-            png: true,
+            png: false,
             quality: 0,
             color_type: 2,
         };
@@ -41,7 +41,7 @@ fn main() {
         let dt = now.elapsed().as_micros() as f64 / 1000000.0;
         println!("{}", dt);
         t += dt;
-        let mut f = File::create(out_directory.join(format!("{}.png", i))).unwrap();
+        let mut f = File::create(out_directory.join(format!("{}.jpg", i))).unwrap();
         f.write(&encoded_image).unwrap();
         i += 1;
     }

@@ -14,3 +14,4 @@ headers = ["safer-ffi/headers"]
 [dependencies]
 image = { version = "0.24.7", default-features = false, features = ["jpeg", "png"] }
 safer-ffi = { version = "0.1.2", features = ["alloc"] }
+jpeg-encoder = "0.5.1"
