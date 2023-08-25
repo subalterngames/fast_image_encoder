@@ -74,8 +74,8 @@ fn get_color_type(value: u8) -> ColorType {
 fn get_jpeg_color_type(value: u8) -> JpegColorType {
     match value {
         0 => JpegColorType::Luma,
-        1 => JpegColorType::Rgba,
         2 => JpegColorType::Rgb,
+        3 => JpegColorType::Rgba,
         _ => unreachable!("Invalid color type value: {}", value),
     }
 }
