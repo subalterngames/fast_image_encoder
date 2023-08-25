@@ -15,8 +15,16 @@ Fast Image Encoder speeds up image encoding in two ways:
 
 ## How to add Fast Image Encoder to your program
 
-1. [Download the latest release.](https://github.com/subalterngames/fast_image_encoder/releases/latest) You need to download `FastImageEncoder.dll` (compatible with Linux, MacOS, and Windows), *and* `fast_image_encoder.*` (for whatever platform(s) you plan to develop for). MacOS: `.dylib`, Linux: `.so`, Windows: `.dll`
-2. Add the download libraries to your project.
+1. [Download FastImageEncoder.dll](https://github.com/subalterngames/fast_image_encoder/releases/latest) This is the C# library. It is compatible with Linux, MacOS, and Windows.
+2. [Download the platform-specific Rust library:](https://github.com/subalterngames/fast_image_encoder/releases/latest) 
+
+| Platform | Rust Library                  |
+| -------- | ----------------------------- |
+| Linux    | `libfast_image_encoder.so`    |
+| MacOS    | `libfast_image_encoder.dylib` |
+| Windows  | `fast_image_encoder.dll`      |
+
+3. Add the download libraries (C# *and* Rust) to your C# project.
 
 ## Examples and Benchmarks
 

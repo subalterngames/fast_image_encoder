@@ -16,7 +16,7 @@ jobs:
         include:
           - os: ubuntu-latest
             artifact_name: libfast_image_encoder.so
-            asset_name: fast_image_encoder.so
+            asset_name: libfast_image_encoder.so
           - os: windows-latest
             artifact_name: fast_image_encoder.dll
             asset_name: fast_image_encoder.dll
@@ -38,5 +38,6 @@ jobs:
           repo_token: ${{ secrets.TOKEN }}
           file: rs/fast_image_encoder/target/release/${{ matrix.artifact_name }}
           asset_name: ${{ matrix.asset_name }}
-          tag: ${{ github.ref }}
+          tag: ${{ inputs.version }}
+          name: ${{ inputs.version }}
           overwrite: true
