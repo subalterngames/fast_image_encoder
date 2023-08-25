@@ -15,7 +15,7 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            artifact_name: fast_image_encoder.so
+            artifact_name: libfast_image_encoder.so
             asset_name: fast_image_encoder-linux-x64
           - os: windows-latest
             artifact_name: fast_image_encoder.dll
