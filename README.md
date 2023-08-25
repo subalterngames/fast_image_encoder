@@ -1,6 +1,6 @@
 # Fast Image Encoder
 
-**Blazingly fast C#/Rust zero-allocation thread-safe png/jpg image encoder. **
+**Blazingly fast C#/Rust zero-allocation thread-safe png/jpg image encoder.**
 
 Fast Image Encoder is a C#/Rust image encoding library. It is meant as a significantly faster alternative to Unity's image encoding methods.
 
