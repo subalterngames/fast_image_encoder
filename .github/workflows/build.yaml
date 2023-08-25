@@ -15,7 +15,7 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            artifact_name: fast_image_encoder
+            artifact_name: fast_image_encoder.so
             asset_name: fast_image_encoder-linux-x64
           - os: windows-latest
             artifact_name: fast_image_encoder.dll
@@ -32,6 +32,7 @@ jobs:
       - name: cargo build
         working-directory: rs/fast_image_encoder
         run: cargo build --release
+      - run: cd rs/fast_image_encoder/target/release && ls
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
