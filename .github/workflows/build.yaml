@@ -39,5 +39,5 @@ jobs:
           file: rs/fast_image_encoder/target/release/${{ matrix.artifact_name }}
           asset_name: ${{ matrix.asset_name }}
           tag: ${{ inputs.version }}
-          name: ${{ inputs.version }}
+          release_name: ${{ inputs.version }}
           overwrite: true
