@@ -26,7 +26,7 @@ In the following examples, the raw image data is always 256x256 24-bit RGB.
 
 ### 1. Rust-to-Rust: `rs/fast_image_encoder/examples/benchmark`
 
-This program loads raw RGB data in `target/release/examples/images/` and outputs png files in `target/release/examples/images/out`. This is an example of encoding an image within a Rust program. It isn't the intended use-case for this project but it's probably useful for understanding how the Rust code works. It can also be used to benchmark the image encoding without and FFI overhead.
+This program loads raw RGB data in `target/release/examples/images/` and outputs png files in `target/release/examples/images/out`. This is an example of encoding an image within a Rust program. It isn't the intended use-case for this project but it's probably useful for understanding how the Rust code works. It can also be used to benchmark the image encoding without and FFI overhead. If you want to encode using images in a pure-Rust application, you shouldn't use this library; just use the `image` crate instead.
 
 To compile and run:
 
