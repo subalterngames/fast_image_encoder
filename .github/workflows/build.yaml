@@ -1,0 +1,41 @@
+name: build
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Build version
+        required: True
+
+jobs:
+  publish:
+    name: Publish for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_name: fast_image_encoder
+            asset_name: fast_image_encoder-linux-x64
+          - os: windows-latest
+            artifact_name: fast_image_encoder.dll
+            asset_name: fast_image_encoder-windows-x64
+          - os: macos-latest
+            artifact_name: fast_image_encoder
+            asset_name: fast_image_encoder-macos-x64
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.71.0
+      - name: cargo build
+        run: cargo build --release
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: target/release/${{ matrix.artifact_name }}
+          asset_name: ${{ matrix.asset_name }}
+          tag: ${{ github.ref }}
+          overwrite: true
