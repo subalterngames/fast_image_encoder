@@ -77,7 +77,9 @@ This benchmark can't be compared directly two previous benchmarks because Unity 
 
 ## Limitations
 
-Fast Image Encoder assumes that the input image data is raw RGB data, as opposed to jpg and png.
+- Fast Image Encoder assumes that the input image data is raw RGB data, as opposed to jpg and png.
+- Fast Image Encoder only works for png and jpg, though it would probably be very easy to add more options.
+- Fast Image Encoder has only been tested on MacOS x64, Linux x64, and Windows x64.
 
 ## How to compile
 
