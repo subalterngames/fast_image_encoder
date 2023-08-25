@@ -21,7 +21,7 @@ jobs:
             artifact_name: fast_image_encoder.dll
             asset_name: fast_image_encoder-windows-x64
           - os: macos-latest
-            artifact_name: fast_image_encoder.dylib
+            artifact_name: libfast_image_encoder.dylib
             asset_name: fast_image_encoder-macos-x64
     steps:
       - uses: actions/checkout@v3
