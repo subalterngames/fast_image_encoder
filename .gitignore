@@ -18,7 +18,9 @@ cs/FastImageEncoder/dataSources/
 cs/FastImageEncoder/dataSources.local.xml
 cs/FastImageEncoder/FastImageEncoder/bin/
 cs/FastImageEncoder/FastImageEncoder/obj/
-cs/FastImageEncoder/FastImageEncoder/image_encoder.dll
+cs/FastImageEncoder/FastImageEncoder/fast_image_encoder.dll
+cs/FastImageEncoder/FastImageEncoder/libfast_image_encoder.dylib
+cs/FastImageEncoder/FastImageEncoder/libfast_image_encoder.so
 cs/FastImageEncoder/Benchmark/bin/
 cs/FastImageEncoder/Benchmark/obj/
 cs/FastImageEncoder/UnityExample/.idea/
