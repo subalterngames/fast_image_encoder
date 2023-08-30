@@ -8,21 +8,49 @@ on:
         required: True
 
 jobs:
+  publish-macos:
+    name: Publish for MacOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.71.0
+          targets: x86_64-apple-darwin, aarch64-apple-darwin
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install fat-macho
+        run: pip3 install fat-macho
+      - name: cargo build
+        working-directory: rs/fast_image_encoder
+        run: cargo build --release x86_64-apple-darwin && cargo build --release aarch64-apple-darwin
+      - name: Make universal library
+        working-directory: py
+        run: python3 macho.py
+      - name: Upload
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.TOKEN }}
+          file: libfast_image_encoder.dylib
+          asset_name: libfast_image_encoder.dylib
+          tag: ${{ inputs.version }}
+          release_name: ${{ inputs.version }}
+          overwrite: true
   publish:
     name: Publish for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         include:
-          - os: ubuntu-latest
+          - os: ubuntu-20.04
             artifact_name: libfast_image_encoder.so
             asset_name: libfast_image_encoder.so
           - os: windows-latest
             artifact_name: fast_image_encoder.dll
             asset_name: fast_image_encoder.dll
-          - os: macos-latest
-            artifact_name: libfast_image_encoder.dylib
-            asset_name: libfast_image_encoder.dylib
     steps:
       - uses: actions/checkout@v3
       - name: Install Rust
