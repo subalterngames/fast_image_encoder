@@ -37,7 +37,7 @@ jobs:
         run: pip3 install fat-macho
       - name: cargo build
         working-directory: rs/fast_image_encoder
-        run: cargo build --release x86_64-apple-darwin && cargo build --release aarch64-apple-darwin
+        run: cargo build --release --target x86_64-apple-darwin && cargo build --release --target aarch64-apple-darwin
       - name: Make universal library
         working-directory: py
         run: python3 macho.py
