@@ -3,7 +3,7 @@ FROM ubuntu:bionic@sha256:dca176c9663a7ba4c1f0e710986f5a25e672842963d95b960191e2
 ENV TOKEN ${TOKEN}
 ENV VERSION ${VERSION}
 
-RUN apt-get -qq update && apt-get -qq install -y sudo curl wget sh git python3 python3-pip
+RUN apt-get -qq update && apt-get -qq install -y sudo curl wget git python3 python3-pip
 
 RUN python3 -m pip install PyGithub
 
