@@ -28,7 +28,7 @@ fn main() {
         let mut buffer = vec![];
         f.read_to_end(&mut buffer).unwrap();
         let mut encoded_image: safer_ffi::Vec<u8> = safer_ffi::Vec::from(vec![0u8; 256 * 256 * 3]);
-        let raw_image = RawImage {
+        let mut raw_image = RawImage {
             buffer: safer_ffi::Vec::from(buffer),
             width: 256,
             height: 256,
@@ -37,7 +37,7 @@ fn main() {
             color_type: 2,
         };
         let now = Instant::now();
-        encode(&raw_image, &mut encoded_image);
+        encode(&mut raw_image, &mut encoded_image, false);
         let dt = now.elapsed().as_micros() as f64 / 1000000.0;
         println!("{}", dt);
         t += dt;
