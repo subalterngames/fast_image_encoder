@@ -8,6 +8,17 @@ on:
         required: True
 
 jobs:
+  publish-ubuntu:
+    name: Publish for Linux
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Docker build
+        working-directory: Docker
+        run: docker build -t ubuntu-18 .
+      - name: Docker run
+        working-directory: Docker
+        run: docker run -e TOKEN=${{ secrets.TOKEN }} -e VERSION=${{ inputs.version }} ubuntu-18
   publish-macos:
     name: Publish for MacOS
     runs-on: macos-latest
@@ -39,18 +50,9 @@ jobs:
           tag: ${{ inputs.version }}
           release_name: ${{ inputs.version }}
           overwrite: true
-  publish:
-    name: Publish for ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        include:
-          - os: ubuntu-20.04
-            artifact_name: libfast_image_encoder.so
-            asset_name: libfast_image_encoder.so
-          - os: windows-latest
-            artifact_name: fast_image_encoder.dll
-            asset_name: fast_image_encoder.dll
+  publish-windows:
+    name: Publish for Windows
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
       - name: Install Rust
@@ -64,8 +66,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.TOKEN }}
-          file: rs/fast_image_encoder/target/release/${{ matrix.artifact_name }}
-          asset_name: ${{ matrix.asset_name }}
+          file: rs/fast_image_encoder/target/release/fast_image_encoder.dll
+          asset_name: fast_image_encoder.dll
           tag: ${{ inputs.version }}
           release_name: ${{ inputs.version }}
           overwrite: true

@@ -18,7 +18,7 @@ use std::ptr;
 ///
 /// - `raw_image` The raw image and its metadata.
 /// - `encoded_image` The array of the encoded image. It will be filled by this function.
-/// - `flip_y` If true, flip over y axis.
+/// - `flip_y` If true, flip over y axis. If you're reading raw data off the GPU, sometimes it's upside-down.
 ///
 /// Returns: The number of pixels used in `encoded_image` (its true size might be larger).
 #[ffi_export]
@@ -86,12 +86,15 @@ fn get_jpeg_color_type(value: u8) -> JpegColorType {
     }
 }
 
+/// Flip raw RGB data upside-down.
 fn flip(width: u32, height: u32, data: &mut safer_ffi::Vec<u8>) {
-    let width = width as usize * 3;
+    let mut width = width as usize; 
     let height = height as usize;
-    for (r0, r1) in (0..height).zip((0..height).rev()) {
-        let x0 = r0 * width;
-        let x1 = r1 * width;
+    let depth = data.len() / (width * height);
+    width *= depth;
+    for y in 0..height / 2 {
+        let x0 = y * width;
+        let x1 = (height - y - 1) * width;
         let ptr = data.as_mut_ptr();
         unsafe {
             ptr::swap_nonoverlapping(ptr.add(x0), ptr.add(x1), width);
