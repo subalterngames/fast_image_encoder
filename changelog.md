@@ -2,7 +2,7 @@
 
 - Reverted the option to flip raw image data because it's faster to do it on the GPU.
 - Updated the Unity example to show how to flip the texture.
-- Fixed the Ubuntu dockerfile.
+- Removed Ubuntu dockerfile. Fast Image Encoder is now supported on Ubuntu 20 and up.
 
 # 0.1.3
 
