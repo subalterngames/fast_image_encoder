@@ -1,6 +1,6 @@
 [package]
 name = "fast_image_encoder"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2021"
 authors = ["Esther Alter <subalterngames@gmail.com>"]
 description = "Blazingly fast FFI call to encode raw RGB arrays to png or jpg."

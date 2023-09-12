@@ -23,10 +23,15 @@ public class ImageEncoder : MonoBehaviour
     private uint width;
     private uint height;
     private GraphicsFormat graphicsFormat;
+    private static bool flipTextures;
+    private static readonly Vector2 BlitScale = new Vector2(1, -1);
+    private static readonly Vector2 BlitOffset = new Vector2(0, 1);
     
     
     private void Awake()
     {
+        // Check if we need to flip the rendered textures.
+        flipTextures = SystemInfo.graphicsUVStartsAtTop;
         // Find the camera.
         cam = GetComponent<Camera>();
         // Get the screen size.
@@ -61,6 +66,16 @@ public class ImageEncoder : MonoBehaviour
         
         // Force the camera to render.
         cam.Render();
+        
+        // Flip the render texture if needed.
+        if (flipTextures)
+        {
+            RenderTexture flipRT = RenderTexture.GetTemporary(
+                Screen.width, Screen.height, DEPTH_BUFFER, FORMAT, RenderTextureReadWrite.Default);
+            Graphics.Blit(renderRT, flipRT, BlitScale, BlitOffset);
+            Graphics.Blit(flipRT, renderRT);
+            RenderTexture.ReleaseTemporary(flipRT);
+        }
         
         // Create the texture.
         Texture2D texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);

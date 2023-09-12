@@ -7,7 +7,9 @@ RUN apt-get -qq update && apt-get -qq install -y sudo curl wget git python3 pyth
 
 RUN python3 -m pip install PyGithub
 
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+ENV PATH="/root/.cargo/bin:${PATH}"
 
 RUN git clone https://github.com/subalterngames/fast_image_encoder.git
 

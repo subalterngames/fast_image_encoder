@@ -37,7 +37,7 @@ fn main() {
             color_type: 2,
         };
         let now = Instant::now();
-        encode(&mut raw_image, &mut encoded_image, false);
+        encode(&mut raw_image, &mut encoded_image);
         let dt = now.elapsed().as_micros() as f64 / 1000000.0;
         println!("{}", dt);
         t += dt;

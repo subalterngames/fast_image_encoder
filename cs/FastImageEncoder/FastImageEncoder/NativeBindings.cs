@@ -78,16 +78,13 @@ public unsafe partial class Ffi {
     ///
     /// - <c>raw_image</c> The raw image and its metadata.
     /// - <c>encoded_image</c> The array of the encoded image. It will be filled by this function.
-    /// - <c>flip_y</c> If true, flip over y axis.
     ///
     /// Returns: The number of pixels used in <c>encoded_image</c> (its true size might be larger).
     /// </summary>
     [DllImport(RustLib, ExactSpelling = true)] public static unsafe extern
     UInt32 encode (
         RawImage_t * raw_image,
-        Vec_uint8_t * encoded_image,
-        [MarshalAs(UnmanagedType.U1)]
-        bool flip_y);
+        Vec_uint8_t * encoded_image);
 }
 
 

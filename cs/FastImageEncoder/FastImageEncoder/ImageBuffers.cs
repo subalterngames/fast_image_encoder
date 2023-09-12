@@ -98,8 +98,7 @@ public struct ImageBuffers
     /// </summary>
     /// <param name="png">If true, encode to png. If false, encode to jpg.</param>
     /// <param name="quality">The jpg quality (0-100).</param>
-    /// <param name="flip">If true, flip the image vertically.</param>
-    public UInt32 Encode(bool png = true, byte quality = 75, bool flip = false)
+    public UInt32 Encode(bool png = true, byte quality = 75)
     {
         unsafe
         {
@@ -130,7 +129,7 @@ public struct ImageBuffers
                     cap = length
                 };
                 // Encode.
-                return Ffi.encode(&rawImageT, &encodedImageVec, flip);
+                return Ffi.encode(&rawImageT, &encodedImageVec);
             }
         }
     }

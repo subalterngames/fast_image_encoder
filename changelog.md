@@ -1,3 +1,9 @@
+# 0.1.4
+
+- Reverted the option to flip raw image data because it's faster to do it on the GPU.
+- Updated the Unity example to show how to flip the texture.
+- Fixed the Ubuntu dockerfile.
+
 # 0.1.3
 
 - Added an option to flip raw image data before encoding.
