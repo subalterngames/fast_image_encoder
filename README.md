@@ -100,3 +100,7 @@ If the Rust code is edited, the C# bindings need to be re-generated:
 
 1. `cd rs/fast_image_encoder`
 2. `cargo run --features headers --bin generate-headers`
+
+## Changelog
+
+[Read this.](changelog.md)

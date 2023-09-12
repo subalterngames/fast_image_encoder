@@ -12,15 +12,21 @@ pub use raw_image::RawImage;
 use safer_ffi::headers::Language::CSharp;
 use safer_ffi::prelude::*;
 use std::io::Cursor;
+use std::ptr;
 
 /// Encode a single image.
 ///
 /// - `raw_image` The raw image and its metadata.
 /// - `encoded_image` The array of the encoded image. It will be filled by this function.
+/// - `flip_y` If true, flip over y axis. If you're reading raw data off the GPU, sometimes it's upside-down.
 ///
 /// Returns: The number of pixels used in `encoded_image` (its true size might be larger).
 #[ffi_export]
-pub fn encode(raw_image: &RawImage, encoded_image: &mut safer_ffi::Vec<u8>) -> u32 {
+pub fn encode(raw_image: &mut RawImage, encoded_image: &mut safer_ffi::Vec<u8>, flip_y: bool) -> u32 {
+    // Flip the image.
+    if flip_y {
+        flip(raw_image.width, raw_image.height, &mut raw_image.buffer);
+    }
     // Start a new writer.
     let mut writer = Cursor::new(vec![]);
     // Encode a png image.
@@ -77,6 +83,22 @@ fn get_jpeg_color_type(value: u8) -> JpegColorType {
         2 => JpegColorType::Rgb,
         3 => JpegColorType::Rgba,
         _ => unreachable!("Invalid color type value: {}", value),
+    }
+}
+
+/// Flip raw RGB data upside-down.
+fn flip(width: u32, height: u32, data: &mut safer_ffi::Vec<u8>) {
+    let mut width = width as usize; 
+    let height = height as usize;
+    let depth = data.len() / (width * height);
+    width *= depth;
+    for y in 0..height / 2 {
+        let x0 = y * width;
+        let x1 = (height - y - 1) * width;
+        let ptr = data.as_mut_ptr();
+        unsafe {
+            ptr::swap_nonoverlapping(ptr.add(x0), ptr.add(x1), width);
+        }
     }
 }
 
