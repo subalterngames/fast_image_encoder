@@ -8,7 +8,7 @@ on:
         required: True
 
 jobs:
-  publish-ubuntu:
+  publish-linux-and-windows:
     name: Publish for Linux and Windows
     runs-on: ${{ matrix.os }}
     strategy:
@@ -67,6 +67,3 @@ jobs:
           tag: ${{ inputs.version }}
           release_name: ${{ inputs.version }}
           overwrite: true
-  publish-windows:
-    name: Publish for Windows
-    runs-on: windows-latest
